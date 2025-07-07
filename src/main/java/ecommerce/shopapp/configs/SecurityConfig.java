@@ -1,6 +1,7 @@
 package ecommerce.shopapp.configs;
 
 import ecommerce.shopapp.services.CustomUserDetailsService;
+import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;
@@ -35,7 +36,7 @@ public class SecurityConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
+    @Bean
     public AuthenticationManager authenticationManager (AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }

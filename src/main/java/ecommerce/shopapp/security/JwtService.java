@@ -1,5 +1,6 @@
 package ecommerce.shopapp.security;
 
+import ecommerce.shopapp.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -31,6 +32,22 @@ public class JwtService {
                 .signWith(getSignKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
+
+    public String generateToken(User user) {
+        Map<String, Object> claims = new HashMap<>();
+        claims.put("role", user.getRole().name());
+        claims.put("userId", user.getId());
+
+        UserDetails userDetails = org.springframework.security.core.userdetails.User
+                .withUsername(user.getEmail())
+                .password(user.getPassword())
+                .roles(user.getRole().name())
+                .build();
+
+        return generateToken(claims, userDetails);
+    }
+
+
 
     private Key getSignKey() {
         byte[] keyBytes = Decoders.BASE64.decode(token);
