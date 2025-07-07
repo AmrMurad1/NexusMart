@@ -1,5 +1,4 @@
 package ecommerce.shopapp.services;
-
 import ecommerce.shopapp.DTOs.AuthResponse;
 import ecommerce.shopapp.DTOs.LoginRequest;
 import ecommerce.shopapp.DTOs.UserRegistrationRequest;
@@ -15,8 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,17 +25,19 @@ public class UserService {
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
 
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public User getUserById(Long id) {
+        return userRepository.findById(id)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with ID: " + id));
     }
+
 
     public AuthResponse registerUser(UserRegistrationRequest request) {
 
-        if (userRepository.findByEmail(request.getEmail()).isPresent()) {
+         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new IllegalArgumentException("this email is already registered");
         }
         User user = new User();
-        user.setPassword(request.getUsername());
+        user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setRole(Role.USER);
@@ -74,4 +75,24 @@ public class UserService {
 
     }
 
-}
+    public User updateUser(Long id, User updatedUser) {
+        User existingUser = getUserById(id);
+
+        existingUser.setUsername(updatedUser.getUsername());
+        existingUser.setEmail(updatedUser.getEmail());
+
+        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()){
+            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        }
+        return userRepository.save(existingUser);
+
+    }
+
+    public void deleteById (Long id){
+        if (!userRepository.existsById(id)){
+            throw new UsernameNotFoundException("user not found with Id: "+ id);
+        }
+        userRepository.deleteById(id);
+    }
+
+ }
