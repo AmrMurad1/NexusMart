@@ -2,6 +2,7 @@ package ecommerce.shopapp.services;
 import ecommerce.shopapp.DTOs.AuthResponse;
 import ecommerce.shopapp.DTOs.LoginRequest;
 import ecommerce.shopapp.DTOs.UserRegistrationRequest;
+import ecommerce.shopapp.DTOs.UserUpdateRequest;
 import ecommerce.shopapp.entities.User;
 import ecommerce.shopapp.enums.Role;
 import ecommerce.shopapp.repository.UserRepository;
@@ -75,14 +76,14 @@ public class UserService {
 
     }
 
-    public User updateUser(Long id, User updatedUser) {
+    public User updateUser(Long id, UserUpdateRequest request) {
         User existingUser = getUserById(id);
 
-        existingUser.setUsername(updatedUser.getUsername());
-        existingUser.setEmail(updatedUser.getEmail());
+        existingUser.setUsername(request.getUsername());
+        existingUser.setEmail(request.getEmail());
 
-        if (updatedUser.getPassword() != null && !updatedUser.getPassword().isBlank()){
-            existingUser.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
+        if (request.getPassword() != null && !request.getPassword().isBlank()){
+            existingUser.setPassword(passwordEncoder.encode(request.getPassword()));
         }
         return userRepository.save(existingUser);
 
