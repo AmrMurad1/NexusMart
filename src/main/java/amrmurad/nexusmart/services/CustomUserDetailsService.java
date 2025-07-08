@@ -1,7 +1,7 @@
-package ecommerce.shopapp.services;
+package amrmurad.nexusmart.services;
 
-import ecommerce.shopapp.entities.User;
-import ecommerce.shopapp.repository.UserRepository;
+import amrmurad.nexusmart.entities.User;
+import amrmurad.nexusmart.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;

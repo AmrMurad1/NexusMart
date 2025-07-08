@@ -1,6 +1,6 @@
-package ecommerce.shopapp.repository;
+package amrmurad.nexusmart.repository;
 
-import ecommerce.shopapp.entities.User;
+import amrmurad.nexusmart.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

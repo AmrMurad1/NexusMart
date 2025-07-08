@@ -1,12 +1,12 @@
-package ecommerce.shopapp.services;
-import ecommerce.shopapp.DTOs.AuthResponse;
-import ecommerce.shopapp.DTOs.LoginRequest;
-import ecommerce.shopapp.DTOs.UserRegistrationRequest;
-import ecommerce.shopapp.DTOs.UserUpdateRequest;
-import ecommerce.shopapp.entities.User;
-import ecommerce.shopapp.enums.Role;
-import ecommerce.shopapp.repository.UserRepository;
-import ecommerce.shopapp.security.JwtService;
+package amrmurad.nexusmart.services;
+import amrmurad.nexusmart.DTOs.AuthResponse;
+import amrmurad.nexusmart.DTOs.LoginRequest;
+import amrmurad.nexusmart.DTOs.UserRegistrationRequest;
+import amrmurad.nexusmart.DTOs.UserUpdateRequest;
+import amrmurad.nexusmart.entities.User;
+import amrmurad.nexusmart.enums.Role;
+import amrmurad.nexusmart.repository.UserRepository;
+import amrmurad.nexusmart.security.JwtService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -15,7 +15,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import java.util.List;
 
 
 @Service

@@ -1,7 +1,6 @@
-package ecommerce.shopapp.configs;
+package amrmurad.nexusmart.configs;
 
-import ecommerce.shopapp.services.CustomUserDetailsService;
-import lombok.Data;
+import amrmurad.nexusmart.services.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;

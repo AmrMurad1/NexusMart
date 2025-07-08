@@ -1,4 +1,4 @@
-package ecommerce.shopapp.DTOs;
+package amrmurad.nexusmart.DTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

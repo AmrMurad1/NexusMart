@@ -1,4 +1,4 @@
-package ecommerce.shopapp;
+package amrmurad.nexusmart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

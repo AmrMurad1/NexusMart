@@ -1,6 +1,6 @@
-package ecommerce.shopapp.security;
+package amrmurad.nexusmart.security;
 
-import ecommerce.shopapp.entities.User;
+import amrmurad.nexusmart.entities.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

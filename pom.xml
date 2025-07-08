@@ -8,10 +8,10 @@
         <version>3.5.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>E-Commerce</groupId>
-    <artifactId>ShopApp</artifactId>
+    <groupId>io.amrmurad</groupId>
+    <artifactId>NexusMart</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>ShopApp</name>
+    <name>NexusMart</name>
     <description>ShopApp</description>
     <url/>
     <licenses>

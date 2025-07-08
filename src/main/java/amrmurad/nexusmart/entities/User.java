@@ -1,8 +1,7 @@
-package ecommerce.shopapp.entities;
+package amrmurad.nexusmart.entities;
 
-import ecommerce.shopapp.enums.Role;
+import amrmurad.nexusmart.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
