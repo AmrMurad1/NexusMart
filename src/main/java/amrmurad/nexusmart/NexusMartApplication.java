@@ -4,11 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ShopAppApplication {
-
+public class NexusMartApplication {
     public static void main(String[] args) {
-        SpringApplication.run(ShopAppApplication.class, args);
+        SpringApplication.run(NexusMartApplication.class, args);
     }
-
-
 }

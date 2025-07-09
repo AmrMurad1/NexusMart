@@ -7,6 +7,7 @@ import amrmurad.nexusmart.entities.User;
 import amrmurad.nexusmart.enums.Role;
 import amrmurad.nexusmart.repository.UserRepository;
 import amrmurad.nexusmart.security.JwtService;
+import com.stripe.model.tax.Registration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -29,6 +30,12 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found with ID: " + id));
     }
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with email: " + email));
+    }
+
 
 
     public AuthResponse registerUser(UserRegistrationRequest request) {
@@ -75,8 +82,8 @@ public class UserService {
 
     }
 
-    public User updateUser(Long id, UserUpdateRequest request) {
-        User existingUser = getUserById(id);
+    public User updateUser(String email, UserUpdateRequest request) {
+        User existingUser = getUserByEmail(email);
 
         existingUser.setUsername(request.getUsername());
         existingUser.setEmail(request.getEmail());
@@ -93,6 +100,11 @@ public class UserService {
             throw new UsernameNotFoundException("user not found with Id: "+ id);
         }
         userRepository.deleteById(id);
+    }
+
+    public void deleteByEmail(String email){
+        User user = getUserByEmail(email);
+        userRepository.delete(user);
     }
 
  }
