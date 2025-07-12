@@ -7,7 +7,6 @@ import amrmurad.nexusmart.entities.User;
 import amrmurad.nexusmart.enums.Role;
 import amrmurad.nexusmart.repository.UserRepository;
 import amrmurad.nexusmart.security.JwtService;
-import com.stripe.model.tax.Registration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
