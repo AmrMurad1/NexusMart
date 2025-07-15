@@ -1,8 +1,11 @@
 package amrmurad.nexusmart.controllers;
 
-import amrmurad.nexusmart.DTOs.UserUpdateRequest;
+import amrmurad.nexusmart.DTOs.*;
 import amrmurad.nexusmart.entities.User;
+import amrmurad.nexusmart.enums.Role;
+import amrmurad.nexusmart.repository.UserRepository;
 import amrmurad.nexusmart.services.UserService;
+import com.stripe.model.tax.Registration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +18,7 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final UserRepository userRepository;
 
     @GetMapping("/me")
     public ResponseEntity<User> getCurrentUser(Principal principal){
@@ -24,10 +28,27 @@ public class UserController {
     }
 
     @PutMapping("/me")
-    public ResponseEntity<User> updateCurrentUser(@Valid @RequestBody UserUpdateRequest request, Principal principal){
+    public ResponseEntity<UserResponse> updateCurrentUser(@Valid @RequestBody UserUpdateRequest request, Principal principal){
         String email = principal.getName();
-        User updateUser = userService.updateUser(id, request);
-        return ResponseEntity.ok(updateUser);
+        User updateUser = userService.updateUserByEmail(email, request);
+        UserResponse response = mapToUserResponse(updateUser);
+        return ResponseEntity.ok(response);
+    }
+
+    private UserResponse mapToUserResponse(User user) {
+        return UserResponse.builder()
+                .id(user.getId())
+                .username(user.getUsername())
+                .email(user.getEmail())
+                .role(user.getRole())
+                .build();
+    }
+    @PutMapping("/{id}/password")
+    public ResponseEntity<Void> changePassword(@PathVariable Long id,
+                                                @Valid @RequestBody PasswordChangeRequest request){
+        userService.changePassword(id, request);
+        return ResponseEntity.ok().build();
+
     }
 
     @GetMapping("/{id}")
@@ -36,6 +57,16 @@ public class UserController {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
     }
+
+    @PutMapping("/{id}/role")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserResponse> updateUserRole(@PathVariable Long id, UserRoleUpdateRequest request){
+        User updateUser = userService.updateUserRole(id, request);
+        UserResponse response = mapToUserResponse(updateUser);
+        return ResponseEntity.ok().build();
+    }
+
+
 
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -50,4 +81,9 @@ public class UserController {
         return ResponseEntity.ok("your account has been deleted successfully");
     }
 
+
 }
+
+
+
+
