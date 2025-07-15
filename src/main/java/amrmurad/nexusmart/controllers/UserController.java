@@ -26,7 +26,7 @@ public class UserController {
     @PutMapping("/me")
     public ResponseEntity<User> updateCurrentUser(@Valid @RequestBody UserUpdateRequest request, Principal principal){
         String email = principal.getName();
-        User updateUser = userService.updateUser(email, request);
+        User updateUser = userService.updateUser(id, request);
         return ResponseEntity.ok(updateUser);
     }
 
