@@ -3,12 +3,14 @@ package amrmurad.nexusmart.entities;
 import amrmurad.nexusmart.enums.Role;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
 @Data
 @Entity
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Table (name = "users")
