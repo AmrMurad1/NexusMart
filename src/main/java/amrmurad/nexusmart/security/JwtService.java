@@ -6,6 +6,8 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import lombok.Value;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import java.security.Key;
@@ -15,10 +17,15 @@ import java.util.Map;
 import java.util.function.Function;
 
 @Service
+@Slf4j
 public class JwtService {
-    private final String token = "";
+    @Value("${jwt.secret:YourSecretKeyHere}")
+    private String secretKey;
 
-    public String genereteToken(UserDetails userDetails){
+    @Value("${jwt.expiration:86400000}") // 24 hours
+    private long jwtExpiration;
+
+    public String generateToken(UserDetails userDetails){
         return (generateToken(new HashMap<>(), userDetails));
     }
 
@@ -29,7 +36,7 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256)
+                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
 
@@ -49,8 +56,11 @@ public class JwtService {
 
 
 
-    private Key getSignKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(token);
+    private Key getSigningKey() {
+        if (secretKey == null || secretKey.isEmpty()){
+            throw new IllegalStateException("JWT secret key is not configured");
+        }
+        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 
@@ -70,7 +80,7 @@ public class JwtService {
     private Claims extractAllClaims(String token){
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getSignKey())
+                .setSigningKey(getSigningKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
