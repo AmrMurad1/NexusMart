@@ -17,8 +17,8 @@ import java.security.Principal;
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
 public class UserController {
+
     private final UserService userService;
-    private final UserRepository userRepository;
 
     @GetMapping("/me")
     public ResponseEntity<User> getCurrentUser(Principal principal){

@@ -6,7 +6,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -19,11 +19,9 @@ import java.util.function.Function;
 @Service
 @Slf4j
 public class JwtService {
-    @Value("${jwt.secret:YourSecretKeyHere}")
+    @Value(("${jwt.secret:Z55OGFi2ymaNpKCn2dnahgudKQz5zct5vyrNS2i1AAg=}"))
     private String secretKey;
 
-    @Value("${jwt.expiration:86400000}") // 24 hours
-    private long jwtExpiration;
 
     public String generateToken(UserDetails userDetails){
         return (generateToken(new HashMap<>(), userDetails));
@@ -35,7 +33,7 @@ public class JwtService {
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
                 .compact();
     }
