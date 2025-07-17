@@ -1,6 +1,6 @@
 package amrmurad.nexusmart.services;
 
-import amrmurad.nexusmart.DTOs.*;
+import amrmurad.nexusmart.DTOs.userDTOs.*;
 import amrmurad.nexusmart.entities.User;
 import amrmurad.nexusmart.enums.Role;
 import amrmurad.nexusmart.exceptions.UserNotFoundException;
@@ -37,9 +37,6 @@ public class UserService {
             "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$"
     );
 
-    private static final int MIN_PASSWORD_LENGTH = 8;
-    private static final int MIN_USERNAME_LENGTH = 3;
-    private static final int MAX_USERNAME_LENGTH = 50;
 
     @Transactional(readOnly = true)
     public User getUserById(Long id) {

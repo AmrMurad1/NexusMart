@@ -1,4 +1,4 @@
-package amrmurad.nexusmart.DTOs;
+package amrmurad.nexusmart.DTOs.userDTOs;
 
 import amrmurad.nexusmart.enums.Role;
 import lombok.*;

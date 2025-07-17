@@ -1,4 +1,4 @@
-package amrmurad.nexusmart.DTOs;
+package amrmurad.nexusmart.DTOs.userDTOs;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -1,11 +1,11 @@
 package amrmurad.nexusmart.controllers;
 
-import amrmurad.nexusmart.DTOs.*;
+import amrmurad.nexusmart.DTOs.userDTOs.PasswordChangeRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.UserResponse;
+import amrmurad.nexusmart.DTOs.userDTOs.UserRoleUpdateRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.UserUpdateRequest;
 import amrmurad.nexusmart.entities.User;
-import amrmurad.nexusmart.enums.Role;
-import amrmurad.nexusmart.repository.UserRepository;
 import amrmurad.nexusmart.services.UserService;
-import com.stripe.model.tax.Registration;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

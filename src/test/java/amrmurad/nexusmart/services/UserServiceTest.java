@@ -1,8 +1,8 @@
 package amrmurad.nexusmart.services;
 
-import amrmurad.nexusmart.DTOs.AuthResponse;
-import amrmurad.nexusmart.DTOs.LoginRequest;
-import amrmurad.nexusmart.DTOs.UserRegistrationRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.AuthResponse;
+import amrmurad.nexusmart.DTOs.userDTOs.LoginRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.UserRegistrationRequest;
 import amrmurad.nexusmart.entities.User;
 import amrmurad.nexusmart.enums.Role;
 import amrmurad.nexusmart.repository.UserRepository;

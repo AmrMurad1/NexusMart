@@ -1,8 +1,8 @@
 package amrmurad.nexusmart.controllers;
 
-import amrmurad.nexusmart.DTOs.AuthResponse;
-import amrmurad.nexusmart.DTOs.LoginRequest;
-import amrmurad.nexusmart.DTOs.UserRegistrationRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.AuthResponse;
+import amrmurad.nexusmart.DTOs.userDTOs.LoginRequest;
+import amrmurad.nexusmart.DTOs.userDTOs.UserRegistrationRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

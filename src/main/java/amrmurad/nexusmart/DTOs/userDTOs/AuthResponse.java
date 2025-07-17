@@ -1,4 +1,4 @@
-package amrmurad.nexusmart.DTOs;
+package amrmurad.nexusmart.DTOs.userDTOs;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,15 +1,15 @@
 package amrmurad.nexusmart.entities;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
-@Data
-@RequiredArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name = "Cart_Items")
+@NoArgsConstructor
+@Data
+@Table(name = "cart_items")
 public class CartItem {
 
     @Id
