@@ -118,7 +118,7 @@ public class CartService {
                 },
                 () -> log.warn("Cart item not found for removal - User: {}, Product: {}",
                     userId, productId)
-                    );
+                  );
     }
 
 
