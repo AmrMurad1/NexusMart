@@ -1,0 +1,26 @@
+package amrmurad.nexusmart.repository;
+
+import amrmurad.nexusmart.enums.OrderStatus;
+import com.stripe.model.Order;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+public interface OrderRepository extends JpaRepository<Order, Long> {
+    // Find orders by user
+    List<Order> findByUserId(Integer userId);
+
+    // Find orders by status
+    List<Order> findByStatus(OrderStatus status);
+
+    // Find orders by user and status
+    List<Order> findByUserIdAndStatus(Integer userId, OrderStatus status);
+
+    // Find orders within date range
+    List<Order> findByCreatedAtBetween(LocalDateTime startDate, LocalDateTime endDate);
+
+    // Find user orders within date range
+    List<Order> findByUserIdAndCreatedAtBetween(Integer userId, LocalDateTime startDate, LocalDateTime endDate);
+
+}
