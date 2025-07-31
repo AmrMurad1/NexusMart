@@ -38,7 +38,6 @@ public class OrderService {
     private final UserRepository userRepository;
     private final StripePaymentService stripePaymentService;
 
-    // ============= PUBLIC METHODS =============
 
     @Transactional
     public PlaceOrderResponse placeOrder(Integer userId) {
